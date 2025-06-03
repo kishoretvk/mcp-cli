@@ -51,6 +51,16 @@
       "runtime":{
         "command": "uv",
         "args": ["--directory", "/Users/christopherhay/chris-source/chuk-mcp-servers/chuk-mcp-runtime", "run", "src/chuk_mcp_runtime/main.py"]
+      },
+      "artifact":{
+        "command": "uv",
+        "args": ["--directory", "/Users/christopherhay/chris-source/chuk-mcp-servers/chuk-mcp-artifact-server", "run", "src/chuk_mcp_artifact_server/main.py"]
+
+      },
+      "perplexity":{
+        "command": "uv",
+        "args": ["--directory", "/Users/christopherhay/chris-source/chuk-mcp-servers/chuk-mcp-perplexity", "run", "src/chuk_mcp_perplexity/main.py"]
+
       }
     }
   }
