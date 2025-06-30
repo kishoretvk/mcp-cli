@@ -8,6 +8,16 @@
         "command": "uv",
         "args": ["--directory", "/Users/christopherhay/chris-source/chuk-mcp-servers/chuk-mcp-perplexity", "run", "src/chuk_mcp_perplexity/main.py"]
 
+      },
+      "ios":{
+        "command": "uv",
+        "args": ["--directory", "/Users/christopherhay/chris-source/chuk-mcp-servers/chuk-mcp-ios", "run", "src/chuk_mcp_ios/mcp/main.py"]
+
+      },
+      "youtube-transcripts":{
+        "command": "uv",
+        "args": ["--directory", "/Users/christopherhay/chris-source/chuk-mcp-servers/chuk-mcp-youtube-transcripts", "run", "src/chuk_mcp_youtube_transcripts/main.py"]
+
       }
     }
   }
