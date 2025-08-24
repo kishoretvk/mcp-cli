@@ -13,11 +13,11 @@ import json
 import time
 from typing import Any, Dict, List, Optional, AsyncIterator
 
-from rich.console import Console
 from rich.live import Live
 from rich.panel import Panel
 from rich.text import Text
 from rich.markdown import Markdown
+from mcp_cli.utils.rich_helpers import get_console
 
 from mcp_cli.logging_config import get_logger
 
@@ -28,7 +28,7 @@ class StreamingResponseHandler:
     """Enhanced streaming handler with better UI integration and error handling."""
     
     def __init__(self, console: Optional[Console] = None):
-        self.console = console or Console()
+        self.console = console or get_console()
         self.current_response = ""
         self.live_display: Optional[Live] = None
         self.start_time = 0.0

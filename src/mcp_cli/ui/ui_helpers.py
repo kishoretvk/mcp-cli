@@ -10,7 +10,6 @@ import logging
 import os
 import sys
 
-from rich.console import Console
 from rich.markdown import Markdown
 from rich.panel import Panel
 from rich.text import TextType,Text
@@ -25,7 +24,7 @@ from mcp_cli.utils.rich_helpers import get_console
 # --------------------------------------------------------------------------- #
 # generic helpers                                                             #
 # --------------------------------------------------------------------------- #
-_console = Console()
+_console = get_console()
 
 
 def clear_screen() -> None:

@@ -17,8 +17,8 @@ from concurrent.futures import ThreadPoolExecutor
 from typing import Any, Callable, Coroutine, Dict, List, Optional
 
 import typer
-from rich.console import Console
 from rich.panel import Panel
+from mcp_cli.utils.rich_helpers import get_console
 
 from mcp_cli.tools.manager import set_tool_manager  # only the setter
 
@@ -212,7 +212,7 @@ def cli_entry(
     """
     Thin wrapper so `uv run mcp-cli chat` (or `interactive`) is minimal.
     """
-    console = Console()
+    console = get_console()
 
     async def _inner() -> None:
         if mode not in {"chat", "interactive"}:

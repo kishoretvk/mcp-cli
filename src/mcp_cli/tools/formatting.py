@@ -2,9 +2,9 @@
 """Helper functions for tool display and formatting."""
 from typing import List, Dict, Any
 from rich.table import Table
-from rich.console import Console
 from rich.markdown import Markdown
 from rich.panel import Panel
+from mcp_cli.utils.rich_helpers import get_console
 
 from mcp_cli.tools.models import ToolInfo, ServerInfo
 
@@ -97,13 +97,13 @@ def create_servers_table(servers: List[ServerInfo]) -> Table:
     return table
 
 
-def display_tool_call_result(result, console: Console = None):
+def display_tool_call_result(result, console = None):
     """Display the result of a tool call."""
     import json
     from rich.text import Text
     
     if console is None:
-        console = Console()
+        console = get_console()
     
     if result.success:
         # Format successful result

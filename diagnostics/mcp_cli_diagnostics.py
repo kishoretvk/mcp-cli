@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 """
 Complete MCP CLI system diagnostics
 """
@@ -8,6 +7,7 @@ import sys
 import json
 import subprocess
 import importlib
+import shutil
 from pathlib import Path
 
 def check_python_packages():
@@ -44,15 +44,16 @@ def check_mcp_cli_installation():
     print("\n2. MCP CLI Installation")
     print("-" * 24)
     
-    # Check if mcp-cli command exists
+    # Check if mcp-cli command exists using cross-platform approach
     try:
-        result = subprocess.run(['which', 'mcp-cli'], capture_output=True, text=True)
-        if result.returncode == 0:
-            print(f"   ✅ mcp-cli command found: {result.stdout.strip()}")
+        # Use shutil.which for cross-platform executable detection
+        mcp_cli_path = shutil.which('mcp-cli')
+        if mcp_cli_path:
+            print(f"   ✅ mcp-cli command found: {mcp_cli_path}")
         else:
             print("   ❌ mcp-cli command not found in PATH")
-    except:
-        print("   ❌ Cannot check mcp-cli command")
+    except Exception as e:
+        print(f"   ❌ Cannot check mcp-cli command: {e}")
     
     # Check if we can import mcp_cli
     try:
@@ -118,9 +119,13 @@ def test_basic_functionality():
     
     # Test help command
     try:
+        # Use shell=True on Windows for better compatibility
+        use_shell = sys.platform == "win32"
+        
         result = subprocess.run(
             [sys.executable, '-m', 'mcp_cli', '--help'], 
-            capture_output=True, text=True, timeout=10
+            capture_output=True, text=True, timeout=10,
+            shell=use_shell
         )
         if result.returncode == 0:
             print("   ✅ mcp-cli --help works")
@@ -138,7 +143,8 @@ def test_basic_functionality():
         
         result = subprocess.run(
             [sys.executable, '-m', 'mcp_cli', 'tools', 'list', '--server', 'sqlite'], 
-            capture_output=True, text=True, timeout=15, env=env
+            capture_output=True, text=True, timeout=15, env=env,
+            shell=use_shell
         )
         if result.returncode == 0:
             print("   ✅ tools list works with sqlite")

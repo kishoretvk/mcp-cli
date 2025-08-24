@@ -16,7 +16,7 @@ from typing import Any, Dict, List, Optional
 
 import typer
 from rich import print as rich_print
-from rich.console import Console
+from mcp_cli.utils.rich_helpers import get_console
 
 from mcp_cli.cli.commands.base import BaseCommand
 from mcp_cli.cli_options import process_options
@@ -143,7 +143,7 @@ class CmdCommand(BaseCommand):
 
         # Get LLM client from ModelManager
         client = model_manager.get_client()
-        progress = Console(stderr=True, no_color=plain) if verbose else None
+        progress = get_console(stderr=True, no_color=plain) if verbose else None
 
         # Single-turn mode
         if single_turn:

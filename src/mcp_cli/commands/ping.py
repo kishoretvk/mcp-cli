@@ -9,9 +9,9 @@ import logging
 import time
 from typing import Any, Dict, List, Sequence, Tuple
 
-from rich.console import Console
 from rich.table import Table
 from rich.text import Text
+from mcp_cli.utils.rich_helpers import get_console
 
 # Updated import for new chuk-mcp APIs
 from chuk_mcp.protocol.messages import send_ping
@@ -76,7 +76,7 @@ async def ping_action_async(
     Returns **True** if at least one server was pinged.
     """
     streams = list(tm.get_streams())
-    console = Console()
+    console = get_console()
 
     # Pre-fetch server info once (await!)
     server_infos = await tm.get_server_info()

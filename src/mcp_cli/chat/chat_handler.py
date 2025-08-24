@@ -12,12 +12,11 @@ from typing import Optional
 
 from rich import print
 from rich.panel import Panel
-from rich.console import Console
+from mcp_cli.utils.rich_helpers import get_console
 
 # Local imports
 from mcp_cli.chat.chat_context import ChatContext, TestChatContext
 from mcp_cli.chat.ui_manager import ChatUIManager
-from mcp_cli.chat.conversation import ConversationProcessor
 from mcp_cli.ui.ui_helpers import clear_screen, display_welcome_banner
 from mcp_cli.model_manager import ModelManager
 from mcp_cli.tools.manager import ToolManager
@@ -47,7 +46,7 @@ async def handle_chat_mode(
         True if session ended normally, False on failure
     """
     ui: Optional[ChatUIManager] = None
-    console = Console()
+    console = get_console()
 
     try:
         # Create chat context using clean factory
@@ -120,7 +119,7 @@ async def handle_chat_mode_for_testing(
         True if session ended normally, False on failure
     """
     ui: Optional[ChatUIManager] = None
-    console = Console()
+    console = get_console()
 
     try:
         # Create test chat context

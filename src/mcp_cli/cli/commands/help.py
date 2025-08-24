@@ -4,7 +4,7 @@ import typer
 from typing import Optional, Any
 import logging
 
-from rich.console import Console
+from mcp_cli.utils.rich_helpers import get_console
 
 # shared implementation
 from mcp_cli.commands.help import help_action
@@ -26,7 +26,7 @@ def help_run(
     """
     Show help for all commands, or detailed help for one command.
     """
-    console = Console()
+    console = get_console()
     help_action(console, command)
     # Typer will auto-exit after returning from this function.
 
@@ -48,6 +48,6 @@ class HelpCommand(BaseCommand):
           • command: str
         """
         command = params.get("command")
-        console = Console()
+        console = get_console()
         logger.debug(f"Executing HelpCommand for: {command!r}")
         help_action(console, command)

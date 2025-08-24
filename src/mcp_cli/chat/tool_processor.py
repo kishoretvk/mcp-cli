@@ -19,7 +19,7 @@ import uuid
 from typing import Any, Dict, List, Optional
 
 from rich import print as rprint
-from rich.console import Console
+from mcp_cli.utils.rich_helpers import get_console
 
 from mcp_cli.tools.formatting import display_tool_call_result
 from mcp_cli.tools.models import ToolCallResult

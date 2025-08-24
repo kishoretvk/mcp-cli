@@ -7,9 +7,9 @@ import shlex
 from typing import Any, Dict, List, Optional
 
 from rich import print
-from rich.console import Console
 from rich.markdown import Markdown
 from rich.panel import Panel
+from mcp_cli.utils.rich_helpers import get_console
 
 # Use prompt_toolkit for advanced prompt and autocompletion
 from prompt_toolkit import PromptSession
@@ -54,7 +54,7 @@ async def interactive_mode(
     """
     Launch the interactive mode CLI with slash-menu autocompletion.
     """
-    console = Console()
+    console = get_console()
 
     # Register commands
     register_all_commands()

@@ -1,4 +1,3 @@
-#!/usr/bin/env python
 """
 src_size.py  <path-or-vcs-url>
 ================================
@@ -55,7 +54,9 @@ def du(path: pathlib.Path) -> int:
 
 
 def run(cmd: List[str]) -> None:
-    subprocess.check_call(cmd, stdout=subprocess.DEVNULL, stderr=subprocess.STDOUT)
+    # Use shell=True on Windows for better compatibility
+    use_shell = os.name == "nt"
+    subprocess.check_call(cmd, stdout=subprocess.DEVNULL, stderr=subprocess.STDOUT, shell=use_shell)
 
 
 def build_artefacts(src: pathlib.Path, out: pathlib.Path) -> List[pathlib.Path]:

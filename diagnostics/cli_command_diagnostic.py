@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 """
 Simple, robust test script for MCP servers that avoids asyncio complications
 """
@@ -21,12 +20,16 @@ def test_mcp_cli_command(command_args, timeout=30):
         cmd = [sys.executable, '-m', 'mcp_cli'] + command_args
         print(f"🧪 Running: {' '.join(cmd)}")
         
+        # Use shell=True on Windows for better compatibility
+        use_shell = sys.platform == "win32"
+        
         result = subprocess.run(
             cmd,
             capture_output=True,
             text=True,
             timeout=timeout,
-            env=env
+            env=env,
+            shell=use_shell
         )
         
         success = result.returncode == 0

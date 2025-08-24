@@ -9,7 +9,7 @@ import logging
 from typing import Any, Dict, List, AsyncIterator
 
 from rich import print
-from rich.console import Console
+from mcp_cli.utils.rich_helpers import get_console
 
 from mcp_cli.chat.system_prompt import generate_system_prompt
 from mcp_cli.tools.manager import ToolManager
@@ -112,7 +112,7 @@ class ChatContext:
     # ── Initialization ────────────────────────────────────────────────────
     async def initialize(self) -> bool:
         """Initialize tools and conversation state."""
-        console = Console()
+        console = get_console()
         try:
             with console.status("[bold cyan]Setting up chat environment…[/bold cyan]", spinner="dots"):
                 await self._initialize_tools()
